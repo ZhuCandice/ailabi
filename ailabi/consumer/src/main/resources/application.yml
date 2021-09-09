@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: consumer
+server:
+  port: 8083
+
+eurekaServer:
+  host: register1
+  port: 8081
+
+#feign配置
+feign:
+  hystrix:
+    enabled: true
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 10
+  client:
+    #将此项目注册到Eureka服务
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://register2:8089/eureka

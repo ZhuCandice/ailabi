@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 8080
+eurekaServer:
+  host: register1
+  port: 8081
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 10
+
+  client:
+    #将此项目注册到Eureka服务
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eurekaServer.host}:${eurekaServer.port}/eureka
+zuul:
+  routes:
+    consumer: /api-alba/**
+  SendErrorFilter:
+    error:
+      disable: true
